@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinci Berlin — Итальянская дневная бар-культура</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAF9F6;
+            --text: #2C2A29;
+            --accent: #D4A373;
+            --accent-dark: #8B4513;
+            --surface: #FFFFFF;
+            --border: #EFECE6;
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(250, 249, 246, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-dark);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 99px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--text);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--text);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            background: var(--text);
+            color: var(--bg);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 100px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #555;
+            margin-bottom: 40px;
+            max-width: 540px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--surface);
+            padding: 32px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(44, 42, 41, 0.05);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #F4EEDD;
+            color: var(--accent-dark);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        /* Services */
+        .services {
+            padding: 100px 0;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.05rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--bg);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 24px rgba(44, 42, 41, 0.04);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* About */
+        .about {
+            padding: 120px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .about-content p {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+
+        .about-image-mockup {
+            background: linear-gradient(135deg, #2C2A29, #4A4644);
+            border-radius: 24px;
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg);
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-mockup::after {
+            content: '🍷 ☕ 🥐';
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.15;
+            bottom: -10px;
+            right: -10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: var(--bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            color: #444;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--accent-dark);
+        }
+
+        /* Contacts */
+        .contacts {
+            padding: 120px 0;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+        }
+
+        .contact-info-card {
+            background: var(--surface);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 30px rgba(44, 42, 41, 0.03);
+        }
+
+        .contact-item {
+            margin-bottom: 32px;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #888;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .contact-value {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .map-mockup {
+            background: #E5E1DA;
+            border-radius: 24px;
+            height: 100%;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            text-align: center;
+            padding: 24px;
+            position: relative;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: var(--bg);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--bg);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-grid, .about-grid, .contacts-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                padding: 120px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">Pinci <span>Berlin</span></a>
+            <ul class="nav-links">
+                <li><a href="#services">Меню и Услуги</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+            <a href="https://www.instagram.com/pinci.berlin/" target="_blank" class="btn btn-outline">Instagram</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="badge">Миланский вайб в Mitte</span>
+                    <h1>Pinci Berlin — Итальянская дневная бар-культура</h1>
+                    <p>От утреннего кофе и хрустящих корнетти до вечерних аперитивов, натуральных вин и свежей пасты.</p>
+                    <div class="hero-actions">
+                        <a href="https://www.instagram.com/pinci.berlin/" target="_blank" class="btn btn-primary">Посмотреть меню в Instagram</a>
+                        <a href="#contacts" class="btn btn-outline">Как нас найти</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <span class="badge">Große Hamburger Str. 42</span>
+                        <h3 class="serif" style="font-size: 1.8rem; margin-bottom: 12px;">Атмосфера Милана</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Место для неспешных утр, легких ланчей и шумных вечерних встреч за бокалом натурального вина.</p>
+                        <div style="display: flex; gap: 8px; font-size: 1.5rem;">
+                            ☕ 🥐 🍝 🍷
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Наше предложение</h2>
+                <p>Традиционные итальянские вкусы с берлинским характером на каждый день</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">☕</div>
+                        <h3>Утренний кофе и выпечка</h3>
+                        <p>Идеальный эспрессо, капучино и свежеиспеченные хрустящие корнетти каждое утро.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">🍸</div>
+                        <h3>Дневные и вечерние аперитивы</h3>
+                        <p>Классические миланские коктейли: Negroni, Garibaldi, Bellini для отличного настроения.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">🥖</div>
+                        <h3>Закуски и антипасти</h3>
+                        <p>Свежая фокачча, отборная мортаделла, оливки и легкие итальянские закуски.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">🍝</div>
+                        <h3>Свежая паста</h3>
+                        <p>Ежедневные сезонные блюда домашней пасты, приготовленные по классическим рецептам.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <div class="service-icon">🍷</div>
+                        <h3>Натуральные вина</h3>
+                        <p>Тщательно курируемая карта натуральных вин от лучших европейских виноделов.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="badge">О концепции</span>
+                    <h2>Культовый итальянский дневной бар в сердце Mitte</h2>
+                    <p>Pinci — это стильное минималистичное пространство на Große Hamburger Straße в стиле миланских дневных баров. Мы объединяем культуру неспешного утреннего эспрессо, быстрых ланчей и шумных вечерних аперитивов.</p>
+                    <p>Здесь вы найдете натуральные вина и простые, но невероятно вкусные итальянские блюда для идеальной компании.</p>
+                    <a href="https://www.instagram.com/pinci.berlin/" target="_blank" class="btn btn-primary">Узнать больше в IG</a>
+                </div>
+                <div>
+                    <div class="about-image-mockup">
+                        <div>
+                            <h3 class="serif" style="font-size: 2rem; margin-bottom: 12px;">Pinci Berlin</h3>
+                            <p style="opacity: 0.8; font-size: 1rem;">Milano meets Berlin Mitte</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Что пишут о нас</h2>
+                <p>Впечатления критиков и гостей города</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>“Стильное и атмосферное место на углу Große Hamburger Straße. Идеально для утреннего кофе, легкого ланча или вечернего аперитива с натуральным вином.”</p>
+                    <div class="testimonial-author">Berlin Food Stories</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>“Настоящий миланский вайб в центре Берлина: потрясающая атмосфера, великолепный кофе, фирменная выпечка и отличные коктейли.”</p>
+                    <div class="testimonial-author">Tip Berlin</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ждем вас в гости</h2>
+                <p>Загляните на чашку эспрессо или бокал аперитива</p>
+            </div>
+            <div class="contacts-grid">
+                <div class="contact-info-card">
+                    <div class="contact-item">
+                        <div class="contact-label">Адрес</div>
+                        <div class="contact-value">Große Hamburger Str. 42, 10115 Berlin</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Часы работы</div>
+                        <div class="contact-value">Пн-Пт: 11:00 – 23:00<br><span style="font-size: 1rem; color: #666;">(Сб-Вс: выходной)</span></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Телефон / Связь</div>
+                        <div class="contact-value">По запросу / через Instagram</div>
+                    </div>
+                    <div style="margin-top: 32px;">
+                        <a href="https://www.instagram.com/pinci.berlin/" target="_blank" class="btn btn-primary" style="width: 100%;">Написать в Instagram</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="map-mockup">
+                        <div>
+                            <span style="font-size: 3rem; display: block; margin-bottom: 12px;">📍</span>
+                            <span class="serif" style="font-size: 1.5rem; display: block; margin-bottom: 8px;">Große Hamburger Str. 42</span>
+                            <span style="color: #777; font-size: 0.95rem;">10115 Berlin, Mitte</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Pinci Berlin</div>
+                <ul class="footer-links">
+                    <li><a href="#services">Меню</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#testimonials">Отзывы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="https://www.instagram.com/pinci.berlin/" target="_blank">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 Pinci Berlin. Все права защищены. Итальянская дневная бар-культура в Mitte.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
